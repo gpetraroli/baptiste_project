@@ -1,0 +1,22 @@
+// COLORS
+$primary: #313A46;
+$secondary: #3B5BDB;
+$white: #ffffff;
+$light-gray: #fafbfe;
+$dark-gray: #495057;
+$dark: #212529;
+$success: #2f9e44;
+$warning: #ffd43b;
+$danger: #c92a2a;
+
+$theme-colors: (
+        "primary": $primary,
+        "secondary": $secondary,
+        "white": $white,
+        "light-gray": $light-gray,
+        "dark-gray": $dark-gray,
+        "dark": $dark,
+        "success": $success,
+        "warning": $warning,
+        "danger": $danger,
+);
