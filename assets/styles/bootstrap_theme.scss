@@ -1,9 +1,9 @@
 // COLORS
-$primary: #313A46;
+$primary: #3874ff;
 $secondary: #3B5BDB;
 $white: #ffffff;
-$light-gray: #fafbfe;
-$dark-gray: #495057;
+$light-gray: #f5f7fa;
+$dark-gray: #cbd0dd;
 $dark: #212529;
 $success: #2f9e44;
 $warning: #ffd43b;
@@ -20,3 +20,27 @@ $theme-colors: (
         "warning": $warning,
         "danger": $danger,
 );
+
+// ACCORDION
+$accordion-padding-y: .5rem;
+$accordion-padding-x: .5rem;
+$accordion-border-width: 0;
+$accordion-button-padding-y: .5rem;
+$accordion-button-padding-x: 1rem;
+$accordion-icon-width: .7rem;
+$accordion-button-active-bg: initial;
+$accordion-button-active-color: initial;
+$accordion-button-focus-border-color: none;
+$accordion-button-focus-box-shadow: none;
+$accordion-body-padding-y: 0;
+
+.accordion-item {
+    padding: .25rem 1rem;
+}
+
+.accordion-button {
+    &:hover {
+        background-color: $light-gray;
+        color: $primary;
+    }
+}

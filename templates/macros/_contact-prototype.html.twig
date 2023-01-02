@@ -1,0 +1,25 @@
+{% macro printContact(contactForm) %}
+    <div id="other-contact-{{ contactForm.vars.name }}" class="border rounded bg-white p-3">
+        <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+            <div class="w-100">
+                {{ form_label(contactForm.firstname) }}
+                {{ form_widget(contactForm.firstname) }}
+            </div>
+            <div class="w-100">
+                {{ form_label(contactForm.lastname) }}
+                {{ form_widget(contactForm.lastname) }}
+            </div>
+        </div>
+        {{ form_row(contactForm.position) }}
+        <div class="d-flex flex-column flex-md-row gap-2 mb-3">
+            <div class="col-md-7">
+                {{ form_label(contactForm.email) }}
+                {{ form_widget(contactForm.email) }}
+            </div>
+            <div class="col">
+                {{ form_label(contactForm.phone) }}
+                {{ form_widget(contactForm.phone) }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}

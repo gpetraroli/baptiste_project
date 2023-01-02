@@ -1,0 +1,48 @@
+{% extends 'layout-admin.html.twig' %}
+{% import 'macros/_contact-prototype.html.twig' as formContactMacro %}
+
+{% block content %}
+    {{ form_start(form) }}
+    <div class="d-flex flex-column gap-3 col-xl-6 mx-auto">
+
+        <div>
+            <h4 class="">Basic info</h4>
+            <div class="border rounded bg-white p-3">
+                {{ form_row(form.companyName) }}
+            </div>
+        </div>
+
+        <div>
+            <h4 class="">Billing address</h4>
+            <div class="border rounded bg-white p-3">
+                {{ form_row(form.billingAddress.street) }}
+                <div class="d-flex flex-column flex-md-row gap-2">
+                    {{ form_row(form.billingAddress.number) }}
+                    {{ form_row(form.billingAddress.postalCode) }}
+                    {{ form_row(form.billingAddress.city) }}
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h4 class="">Reference contact</h4>
+            {{ formContactMacro.printContact(form.referenceContact) }}
+        </div>
+        <div>
+            <h4 class="">Other contacts</h4>
+            <div class="customer-other-contacts d-flex flex-column gap-3 mb-3"
+                 data-controller="customer-contact-form"
+                 data-prototype="{{ formContactMacro.printContact(form.otherContacts.vars.prototype)|e('html_attr') }}">
+                {% for contact in form.otherContacts %}
+                    {{ formContactMacro.printContact(contact) }}
+                {% endfor %}
+            </div>
+            <button id="btn_add_other_contact" type="button" class="btn-add-collection">Add another contact</button>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary text-white">Save</button>
+        </div>
+
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

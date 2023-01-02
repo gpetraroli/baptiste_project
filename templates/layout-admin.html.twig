@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="main-container d-flex">
+        <div class="col">
+            {% include 'components/_sidenav.html.twig' %}
+        </div>
+        <div class="content col p-3 bg-light-gray">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
