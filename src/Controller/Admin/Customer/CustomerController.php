@@ -24,7 +24,7 @@ class CustomerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userManager->createUser($customer);
-            
+
             $customerRepository->save($customer, true);
 
             return $this->redirectToRoute('app_admin_dashboard');

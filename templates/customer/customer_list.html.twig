@@ -18,7 +18,9 @@
             <tbody>
             {% for customer in customers %}
                 <tr>
-                    <td>{{ customer.companyName }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_customer_edit', {'id': customer.id}) }}">{{ customer.companyName }}</a>
+                    </td>
                     <td>
                         <span class="position-relative">
                             <i class="bi bi-fire fs-2" style="color: orange"></i>

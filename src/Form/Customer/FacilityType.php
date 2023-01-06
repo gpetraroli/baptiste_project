@@ -33,6 +33,7 @@ class FacilityType extends AbstractType
             ->add('publicMessageEn', TextareaType::class)
             ->add('heatActivities', CollectionType::class, [
                 'entry_type' => HeatActivityType::class,
+                'label' => false,
             ])
             ->add('submit', SubmitType::class);
 

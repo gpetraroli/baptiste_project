@@ -27,7 +27,7 @@ class Customer
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Facility::class, orphanRemoval: true)]
     private Collection $facilities;
 
-    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Contact::class, orphanRemoval: true, cascade: ['all'])]
+    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Contact::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $otherContacts;
 
     #[ORM\OneToOne(mappedBy: 'customer', cascade: ['persist', 'remove'])]

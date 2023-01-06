@@ -1,0 +1,49 @@
+{
+  "version" : "1.2",
+  "profiles" : [ {
+    "id" : "2029e878-d7c5-4808-8b54-be08dff85515",
+    "name" : "Symfony (PHP, TWIG)",
+    "keyNamingPattern" : "SNAKE_CASE_PATTERN",
+    "sink" : {
+      "id" : "f5ac2b66-b7c8-46c0-b8de-c4b1efe1742e",
+      "type" : "namespaced",
+      "translationsDirectory" : "$PROJECT_DIR$/var/cache/dev/translations",
+      "fileType" : "php",
+      "defaultLocale" : "651Lefl",
+      "namespaces" : [ "catalogue.af", "catalogue.ar", "catalogue.az", "catalogue.be", "catalogue.bg", "catalogue.bs", "catalogue.ca", "catalogue.cs", "catalogue.cy", "catalogue.da", "catalogue.de", "catalogue.el", "catalogue.en", "catalogue.es", "catalogue.et", "catalogue.eu", "catalogue.fa", "catalogue.fi", "catalogue.fr", "catalogue.gl", "catalogue.he", "catalogue.hr", "catalogue.hu", "catalogue.hy", "catalogue.id", "catalogue.it", "catalogue.ja", "catalogue.lb", "catalogue.lt", "catalogue.lv", "catalogue.mn", "catalogue.my", "catalogue.nb", "catalogue.nl", "catalogue.nn", "catalogue.no", "catalogue.pl", "catalogue.pt", "catalogue.pt_BR", "catalogue.ro", "catalogue.ru", "catalogue.sk", "catalogue.sl", "catalogue.sq", "catalogue.sr_Cyrl", "catalogue.sr_Latn", "catalogue.sv", "catalogue.th", "catalogue.tl", "catalogue.tr", "catalogue.uk", "catalogue.ur", "catalogue.uz", "catalogue.vi", "catalogue.zh_CN", "catalogue.zh_TW" ],
+      "outputFilenameTemplate" : "%namespace%.%locale%.php",
+      "nestingType" : "DOT",
+      "placeholderFormatterName" : "SYMFONY_REPLACEMENT"
+    },
+    "sources" : [ {
+      "id" : "db3e06a9-7aa2-4abd-83a8-3276e3d08a3c",
+      "type" : "php",
+      "scopeName" : "i18n Ally: Symfony/PHP source",
+      "scopePattern" : "file[baptiste_project]:src//*&&!file[baptiste_project]:src/DataFixtures//*",
+      "defaultReplacementTemplate" : "$this->translator->trans('%key%', %map%, '%namespace%')",
+      "recognizedReplacementTemplates" : [ ],
+      "skipDefaultNamespace" : true,
+      "sprintfMode" : false
+    }, {
+      "id" : "af541aaa-a515-4668-873b-188c5688fa57",
+      "type" : "twig",
+      "scopeName" : "i18n Ally: Symfony/Twig templates",
+      "scopePattern" : "file[baptiste_project]:templates//*",
+      "defaultReplacementTemplate" : "trans(%map%, '%namespace%')",
+      "attributeReplacementTemplate" : "",
+      "inlineTagsReplacementTemplate" : "trans(%map%, '%namespace%')|raw",
+      "recognizedReplacementTemplates" : [ ],
+      "inlineTagNames" : [ "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "br", "cite", "code", "data", "del", "dfn", "em", "i", "img", "input", "ins", "kbd", "label", "mark", "meter", "output", "progress", "q", "ruby", "s", "samp", "slot", "small", "span", "strong", "sub", "sup", "time", "u", "tt", "var", "wbr" ],
+      "translatableAttributeNames" : [ "title", "alt", "placeholder", "label", "aria-label" ],
+      "skipDefaultNamespace" : true
+    } ]
+  } ],
+  "ignores" : {
+    "valuesInProject" : [ "use strict" ],
+    "valuesInFile" : { },
+    "filesInProject" : [ ],
+    "unignoredFunctionNames" : [ ],
+    "unignoredFunctionArguments" : { },
+    "ignoredArrayKeys" : [ "class", "selector", "template", "middleware", "layout", "el", "component", "type", "name", "id", "key", "sql", "query", "dateFormat", "date", "condition" ]
+  }
+}

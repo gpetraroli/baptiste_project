@@ -22,6 +22,10 @@ class FacilityController extends AbstractController
         $facility = new Facility();
         $facility->setCustomer($customer);
 
+        $heatActivity = new HeatActivity();
+        $heatActivity->setLabel('test');
+        $facility->addHeatActivity($heatActivity);
+
         $form = $this->createForm(FacilityType::class, $facility);
         $form->handleRequest($request);
 

@@ -1,0 +1,7 @@
+{% macro renderHeatActivityForm(heatActivityForm) %}
+    <div id="heat-activity-{{ heatActivityForm.vars.name }}" class="border rounded bg-white p-3">
+        <div class="d-flex flex-column gap-2 mb-3">
+            {{ form_row(heatActivityForm.label) }}
+        </div>
+    </div>
+{% endmacro %}
