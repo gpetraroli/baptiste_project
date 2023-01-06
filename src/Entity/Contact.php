@@ -28,9 +28,6 @@ class Contact
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $position = null;
 
-    #[ORM\ManyToOne(inversedBy: 'otherContacts')]
-    private ?Customer $customer = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -92,18 +89,6 @@ class Contact
     public function setPosition(?string $position): self
     {
         $this->position = $position;
-
-        return $this;
-    }
-
-    public function getCustomer(): ?Customer
-    {
-        return $this->customer;
-    }
-
-    public function setCustomer(?Customer $customer): self
-    {
-        $this->customer = $customer;
 
         return $this;
     }

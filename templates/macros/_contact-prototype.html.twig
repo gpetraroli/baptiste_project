@@ -1,6 +1,6 @@
 {% macro printContact(contactForm) %}
     <div id="other-contact-{{ contactForm.vars.name }}" class="border rounded bg-white p-3">
-        <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+        <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-3">
             <div class="w-100">
                 {{ form_label(contactForm.firstname) }}
                 {{ form_widget(contactForm.firstname) }}

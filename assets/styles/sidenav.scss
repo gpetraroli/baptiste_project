@@ -1,33 +1,6 @@
-.nav-single-item {
-    div {
-        padding: 0.25rem 1rem;
-    }
-
-    a {
-        display: block;
-        padding: .5rem 1rem;
-        text-decoration: none;
-        line-height: 1.2;
-        color: $dark;
-
-
+.sidenav {
+    a.nav-link {
         &:hover {
-            background-color: $light-gray;
-            color: $primary;
-
-        }
-    }
-}
-
-.sub-menu {
-    a {
-        padding: .3rem 2rem;
-        color: $dark;
-        text-decoration: none;
-        display: block;
-
-        &:hover {
-            color: $primary;
             background-color: $light-gray;
         }
     }

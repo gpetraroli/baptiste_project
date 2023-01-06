@@ -3,6 +3,7 @@
 namespace App\Controller\Security;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -27,5 +28,12 @@ class LoginController extends AbstractController
     #[Route('/logout', name: 'app_logout')]
     public function logout()
     {
+    }
+
+    #[Route('/login-link-check', name: 'app_login_link_check')]
+    public function loginLinkCheck(Request $request)
+    {
+        dd($request);
+        throw new \LogicException('This code should never be reached');
     }
 }

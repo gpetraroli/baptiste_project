@@ -27,8 +27,11 @@ class Customer
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Facility::class, orphanRemoval: true)]
     private Collection $facilities;
 
-    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Contact::class, cascade: ['all'])]
+    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Contact::class, orphanRemoval: true, cascade: ['all'])]
     private Collection $otherContacts;
+
+    #[ORM\OneToOne(mappedBy: 'customer', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -133,6 +136,28 @@ class Customer
                 $otherContact->setCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setCustomer(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getCustomer() !== $this) {
+            $user->setCustomer($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

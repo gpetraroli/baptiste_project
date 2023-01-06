@@ -1,0 +1,23 @@
+{% macro printContactTooltip(contact) %}
+    <div class="d-flex flex-column gap-2">
+        <span class="d-flex gap-3">
+            <i class="bi bi-person"></i>
+            <span>{{ contact.firstname }} {{ contact.lastname }}</span>
+        </span>
+
+        {% if contact.phone %}
+            <span class="d-flex gap-3">
+                <i class="bi bi-telephone"></i>
+                <a href="tel:{{ contact.phone }}" class="link-white text-decoration-none">{{ contact.phone }}</a>
+            </span>
+        {% endif %}
+
+        {% if contact.email %}
+            <span class="d-flex gap-3">
+                <i class="bi bi-envelope"></i>
+                <a href="mailto:{{ contact.email }}" class="link-white text-decoration-none">{{ contact.email }}</a>
+            </span>
+        {% endif %}
+
+    </div>
+{% endmacro %}

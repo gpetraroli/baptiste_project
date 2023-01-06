@@ -3,11 +3,15 @@
 {% block body %}
 
     <div class="main-container d-flex">
-        <div class="col">
+        <div class="">
             {% include 'components/_sidenav.html.twig' %}
         </div>
-        <div class="content col p-3 bg-light-gray">
-            {% block content %}{% endblock %}
+        <div class="content w-100 p-3 bg-light-gray">
+            <h1 class="mb-5">{% block page_title %}{% endblock %}</h1>
+
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
         </div>
     </div>
 

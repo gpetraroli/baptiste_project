@@ -1,6 +1,8 @@
 {% extends 'layout-admin.html.twig' %}
 {% import 'macros/_contact-prototype.html.twig' as formContactMacro %}
 
+{% block page_title %}New customer{% endblock %}
+
 {% block content %}
     {{ form_start(form) }}
     <div class="d-flex flex-column gap-3 col-xl-6 mx-auto">
@@ -15,11 +17,21 @@
         <div>
             <h4 class="">Billing address</h4>
             <div class="border rounded bg-white p-3">
-                {{ form_row(form.billingAddress.street) }}
+                <div class="d-flex gap-2">
+                    <div class="col col-2">
+                        {{ form_row(form.billingAddress.number) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.billingAddress.street) }}
+                    </div>
+                </div>
                 <div class="d-flex flex-column flex-md-row gap-2">
-                    {{ form_row(form.billingAddress.number) }}
-                    {{ form_row(form.billingAddress.postalCode) }}
-                    {{ form_row(form.billingAddress.city) }}
+                    <div class="col col-3">
+                        {{ form_row(form.billingAddress.postalCode) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.billingAddress.city) }}
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,57 @@
+{% extends 'layout-admin.html.twig' %}
+{% import 'customer/macros/_tooltip_contact.html.twig' as tooltipContact %}
+
+{% block page_title %}Your customers{% endblock %}
+
+{% block content %}
+    <div class="bg-white rounded">
+
+        <table class="table table-hover align-middle m-0">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Facilities</th>
+                <th>Main contact</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.companyName }}</td>
+                    <td>
+                        <span class="position-relative">
+                            <i class="bi bi-fire fs-2" style="color: orange"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {# TODO: contare in base ale tipo #}
+                                {{ customer.facilities.count }}
+                            </span>
+                        </span>
+                    </td>
+                    <td>
+                        <span
+                                class="tooltip-toggle ms-2"
+                                data-tooltip-content="{{ tooltipContact.printContactTooltip(customer.referenceContact)|e('html_attr') }}"
+                                data-tooltip-direction="top" data-tooltip-width="250px">
+                            <i class="bi bi-person-rolodex fs-4"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="d-flex gap-2">
+                            <a
+                                    class="position-relative"
+                                    href="{{ path('app_admin_facility_new', {'id': customer.id}) }}"
+                            >
+                                <i class="bi bi-fire fs-4" style="color: orange"></i>
+                                <i class="bi bi-plus-circle-fill position-absolute bottom-0 end-0 fs-6"></i>
+                            </a>
+                            <a class="text-primary" href="#"><i class="bi bi-eye fs-4"></i></a>
+                            <a class="text-danger" href="#"><i class="bi bi-trash3 fs-4"></i></a>
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

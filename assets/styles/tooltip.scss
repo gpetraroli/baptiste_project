@@ -1,0 +1,85 @@
+.tooltip-toggle {
+    position: relative;
+
+    .tooltip-content {
+        color: #ffffff;
+        background-color: $primary;
+        border: 2px solid $primary;
+        border-radius: 4px;
+        padding: 1rem;
+        position: absolute;
+        box-shadow: $box-shadow;
+        z-index: 1000;
+
+        &:before {
+            content: "";
+            width: calc(100% + 50px);
+            height: calc(100% + 50px);
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            z-index: -1;
+        }
+
+        &:after {
+            content: "";
+            width: 15px;
+            height: 15px;
+            background-color: $primary;
+            position: absolute;
+        }
+
+        &--top {
+            top: -15px;
+            left: 50%;
+            transform: translate(-50%, -100%);
+
+            &:after {
+                clip-path: polygon(50% 100%, 0 0, 100% 0);
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 100%);
+            }
+        }
+
+        &--bottom {
+            bottom: -15px;
+            left: 50%;
+            transform: translate(-50%, 100%);
+
+            &:after {
+                clip-path: polygon(50% 0, 0 100%, 100% 100%);
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -100%);
+            }
+        }
+
+        &--right {
+            bottom: 50%;
+            right: -15px;
+            transform: translate(100%, 50%);
+
+            &:after {
+                clip-path: polygon(100% 0, 0 50%, 100% 100%);
+                top: 50%;
+                left: 0;
+                transform: translate(-100%, -50%);
+            }
+        }
+
+        &--left {
+            bottom: 50%;
+            left: -15px;
+            transform: translate(-100%, 50%);
+
+            &:after {
+                clip-path: polygon(0 0, 100% 49%, 0 100%);
+                top: 50%;
+                right: 0;
+                transform: translate(100%, -50%);
+            }
+        }
+    }
+}

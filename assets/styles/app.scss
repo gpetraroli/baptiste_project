@@ -1,6 +1,8 @@
 // Bootstrap
 @import "bootstrap_theme.scss";
 @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons";
 
 @import "base";
-//@import "sidenav";
+@import "sidenav";
+@import "tooltip";
