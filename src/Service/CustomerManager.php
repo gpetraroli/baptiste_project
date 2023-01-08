@@ -11,9 +11,15 @@ class CustomerManager
     {
     }
 
-    public function generateConsultLink(User $user): string
+//    public function generateConsultLink(User $user): string
+//    {
+//        $loginLinkDetails = $this->loginLinkHandler->createLoginLink($user, null, 315576000);
+//        return $loginLinkDetails->getUrl() . '&_target_path=/heat-activity-entry';
+//    }
+
+    public function generateHeatEntryLink(int $customerId, User $user): string
     {
         $loginLinkDetails = $this->loginLinkHandler->createLoginLink($user, null, 315576000);
-        return $loginLinkDetails->getUrl() . '&_target_path=/login';
+        return $loginLinkDetails->getUrl() . '&_target_path=/heat-activity-entry';
     }
 }

@@ -1,0 +1,45 @@
+{% extends 'layout-admin.html.twig' %}
+
+{% block page_title %}Customer {{ customer.companyName }}{% endblock %}
+
+{% block content %}
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="info-tab" data-bs-toggle="tab"
+                    data-bs-target="#info-tab-pane"
+                    type="button" role="tab" aria-controls="info-tab-pane" aria-selected="true">Infos
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            {% if heatFacilities is not empty %}
+                <button class="nav-link" id="heat-tab" data-bs-toggle="tab" data-bs-target="#heat-tab-pane"
+                        type="button" role="tab" aria-controls="heat-tab-pane" aria-selected="false">Heat facilities
+                </button>
+            {% else %}
+                <a href="{{ path('app_admin_facility_new', {'id': customer.id}) }}"
+                   class="nav-link d-flex justify-content-center align-middle">
+                    <i class="bi bi-plus-circle-fill"></i>
+                    <i class="bi bi-fire fs-4" style="color: orange"></i>
+                </a>
+            {% endif %}
+        </li>
+
+    </ul>
+
+    <div class="tab-content mt-5" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab"
+             tabindex="0">
+            {% include 'components/_customer_form.html.twig' %}
+        </div>
+
+        <div class="tab-pane fade" id="heat-tab-pane" role="tabpanel" aria-labelledby="heat-tab" tabindex="0">
+            {% include 'components/_heat_facilities_table.html.twig' %}
+        </div>
+
+    </div>
+
+
+{% endblock %}

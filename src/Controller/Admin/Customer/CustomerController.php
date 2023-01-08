@@ -5,6 +5,7 @@ namespace App\Controller\Admin\Customer;
 use App\Entity\Customer;
 use App\Form\Customer\CustomerType;
 use App\Repository\CustomerRepository;
+use App\Repository\FacilityRepository;
 use App\Service\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +31,9 @@ class CustomerController extends AbstractController
             return $this->redirectToRoute('app_admin_dashboard');
         }
 
-        return $this->render('customer/customer_new.html.twig', ['form' => $form]);
+        return $this->render('customer/customer_new.html.twig', [
+            'form' => $form,
+        ]);
     }
 
     #[Route('/list', name: '_list')]
@@ -38,6 +41,26 @@ class CustomerController extends AbstractController
     {
         return $this->render('customer/customer_list.html.twig', [
             'customers' => $customerRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: '_edit')]
+    public function edit(Request $request, Customer $customer, CustomerRepository $customerRepository, UserManager $userManager, FacilityRepository $facilityRepository): Response
+    {
+        $form = $this->createForm(CustomerType::class, $customer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $customerRepository->save($customer, true);
+
+            return $this->redirectToRoute('app_admin_customer_list');
+        }
+
+        return $this->render('customer/customer_edit.html.twig', [
+            'form' => $form,
+            'customer' => $customer,
+            'heatFacilities' => $facilityRepository->findBy(['type' => 'heat', 'customer' => $customer]),
         ]);
     }
 }

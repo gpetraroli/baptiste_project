@@ -47,3 +47,17 @@ $accordion-body-padding-y: 0;
 
 // TABLE
 $table-cell-padding-y: 1rem;
+
+// TABS
+.nav-tabs {
+    .nav-link {
+        width: 200px;
+        padding: 12px;
+        height: 100%;
+    }
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    background-color: $primary !important;
+    color: $white !important;
+}

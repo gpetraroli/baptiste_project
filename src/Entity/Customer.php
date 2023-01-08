@@ -24,11 +24,12 @@ class Customer
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Contact $referenceContact = null;
 
+    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Contact::class, cascade: ['all'], orphanRemoval: true)]
+    private Collection $otherContacts;
+
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Facility::class, orphanRemoval: true)]
     private Collection $facilities;
 
-    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Contact::class, cascade: ['all'], orphanRemoval: true)]
-    private Collection $otherContacts;
 
     #[ORM\OneToOne(mappedBy: 'customer', cascade: ['persist', 'remove'])]
     private ?User $user = null;

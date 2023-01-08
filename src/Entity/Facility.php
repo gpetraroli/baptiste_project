@@ -28,12 +28,6 @@ class Facility
     #[ORM\JoinColumn(nullable: false)]
     private ?Address $address = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $publicMessageFr = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $publicMessageEn = null;
-
     #[ORM\ManyToOne(inversedBy: 'facilities')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Customer $customer = null;
@@ -41,11 +35,15 @@ class Facility
     #[ORM\Column(length: 80)]
     private ?string $type = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $consultLink = null;
 
-    #[ORM\OneToMany(mappedBy: 'facility', targetEntity: HeatActivity::class, orphanRemoval: true)]
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $entryLink = null;
+
+    #[ORM\OneToMany(mappedBy: 'facility', targetEntity: HeatActivity::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $heatActivities;
+
 
     public function __construct()
     {
@@ -77,30 +75,6 @@ class Facility
     public function setAddress(Address $address): self
     {
         $this->address = $address;
-
-        return $this;
-    }
-
-    public function getPublicMessageFr(): ?string
-    {
-        return $this->publicMessageFr;
-    }
-
-    public function setPublicMessageFr(string $publicMessageFr): self
-    {
-        $this->publicMessageFr = $publicMessageFr;
-
-        return $this;
-    }
-
-    public function getPublicMessageEn(): ?string
-    {
-        return $this->publicMessageEn;
-    }
-
-    public function setPublicMessageEn(string $publicMessageEn): self
-    {
-        $this->publicMessageEn = $publicMessageEn;
 
         return $this;
     }
@@ -167,6 +141,18 @@ class Facility
                 $heatActivity->setFacility(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEntryLink(): ?string
+    {
+        return $this->entryLink;
+    }
+
+    public function setEntryLink(?string $entryLink): self
+    {
+        $this->entryLink = $entryLink;
 
         return $this;
     }

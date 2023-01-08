@@ -30,8 +30,7 @@ class FacilityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO: create links
-            $facility->setConsultLink($customerManager->generateConsultLink($customer->getUser()));
+            $facility->setConsultLink($customerManager->generateHeatEntryLink($customer->getId(), $customer->getUser()));
             $facilityRepository->save($facility, true);
 
             return $this->redirectToRoute('app_admin_customer_list');

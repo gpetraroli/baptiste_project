@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="d-flex flex-column gap-3 col col-md-8 col-xl-6 mx-auto mt-5 px-3">
+        <h1>Que souhaitez-vous faire ?</h1>
+
+        <div class="mb-3">
+            <div class="border rounded bg-white p-3 d-flex flex-column flex-md-row gap-4 justify-content-around">
+                <a href="{{ path('app_heat_activity_entry_new', {'id': facility.id}) }}"
+                   class="btn btn-primary text-white col">Insérer une
+                    intervention</a>
+                <a href="#" class="btn btn-primary text-white col">Voir l'historique</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

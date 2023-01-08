@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <div class="d-flex flex-column gap-3 col col-md-8 col-xl-6 mx-auto mt-5 px-3" data-controller="heat-new-entry">
+        {{ form_start(form) }}
+
+        <h4>Sélectionnez votre opération</h4>
+        <div class="mb-3">
+            <div class="border rounded bg-white p-3">
+                {{ form_widget(form.type, {'attr': {'class': 'd-flex flex-column gap-3'}}) }}
+            </div>
+        </div>
+
+        <h4>Entrez les informations</h4>
+        <div class="mb-3">
+            <div class="border rounded bg-white p-3">
+                {{ form_row(form.comments) }}
+                {{ form_row(form.workIdentifier) }}
+                {{ form_row(form.nameOA) }}
+            </div>
+        </div>
+
+        <h4>Signature</h4>
+        <div class="mb-3">
+            <div class="border rounded bg-white p-3 d-flex flex-column flex-md-row gap-2">
+                <div class="col">
+                    {{ form_row(form.lastName) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.firstName) }}
+                </div>
+            </div>
+        </div>
+
+        {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary text-white'}}) }}
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{# Nom de l'organisme agréé only if Contrôle réglementaire réalisé par Organisme Agréé (OA) is selected  #}

@@ -1,4 +1,7 @@
 .sidenav {
+    background-color: $white;
+    height: 100vh;
+
     a.nav-link {
         &:hover {
             background-color: $light-gray;

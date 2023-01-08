@@ -28,6 +28,25 @@ class Contact
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $position = null;
 
+    #[ORM\ManyToOne(targetEntity: Customer::class, inversedBy: 'otherContacts')]
+    private ?Customer $customer = null;
+
+    /**
+     * @return Customer|null
+     */
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer|null $customer
+     */
+    public function setCustomer(?Customer $customer): void
+    {
+        $this->customer = $customer;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

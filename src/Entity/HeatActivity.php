@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ActivityHeatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ActivityHeatRepository::class)]
@@ -19,6 +21,14 @@ class HeatActivity
     #[ORM\ManyToOne(inversedBy: 'heatActivities')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Facility $facility = null;
+
+    #[ORM\OneToMany(mappedBy: 'heatActivity', targetEntity: HeatActivityEntry::class)]
+    private Collection $heatActivityEntries;
+
+    public function __construct()
+    {
+        $this->heatActivityEntries = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,6 +55,36 @@ class HeatActivity
     public function setFacility(?Facility $facility): self
     {
         $this->facility = $facility;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, HeatActivityEntry>
+     */
+    public function getHeatActivityEntries(): Collection
+    {
+        return $this->heatActivityEntries;
+    }
+
+    public function addHeatActivityEntry(HeatActivityEntry $heatActivityEntry): self
+    {
+        if (!$this->heatActivityEntries->contains($heatActivityEntry)) {
+            $this->heatActivityEntries->add($heatActivityEntry);
+            $heatActivityEntry->setHeatActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHeatActivityEntry(HeatActivityEntry $heatActivityEntry): self
+    {
+        if ($this->heatActivityEntries->removeElement($heatActivityEntry)) {
+            // set the owning side to null (unless already changed)
+            if ($heatActivityEntry->getHeatActivity() === $this) {
+                $heatActivityEntry->setHeatActivity(null);
+            }
+        }
 
         return $this;
     }

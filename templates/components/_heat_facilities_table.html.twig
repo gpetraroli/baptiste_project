@@ -1,0 +1,31 @@
+<div class="bg-white rounded">
+
+    <table class="table table-hover align-middle m-0">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Links</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for facility in heatFacilities %}
+            <tr>
+                <td>{{ facility.name }}</td>
+                <td>{{ facility.address.number }} {{ facility.address.street }} {{ facility.address.postalCode }} {{ facility.address.city }}</td>
+                <td>
+                    <a href="{{ facility.consultLink ~ '/' ~ facility.id }}" class="copy-link text-decoration-none"
+                       title="Link used to generate customer's QR-Code">
+                        <span class="copy-icon"><i class="bi bi-clipboard"></i></span>
+                        <span class="copy-icon--checked d-none"><i class="bi bi-clipboard-check-fill"></i></span>
+                    </a>
+                </td>
+                <td>{{ facility.id }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+

@@ -29,12 +29,10 @@ class FacilityType extends AbstractType
                 'label' => 'Facility type',
                 'choices' => Facility::FACILITY_TYPES,
             ])
-            ->add('publicMessageFr', TextareaType::class)
-            ->add('publicMessageEn', TextareaType::class)
-            ->add('heatActivities', CollectionType::class, [
-                'entry_type' => HeatActivityType::class,
-                'label' => false,
-            ])
+//            ->add('heatActivities', CollectionType::class, [
+//                'entry_type' => HeatActivityType::class,
+//                'label' => false,
+//            ])
             ->add('submit', SubmitType::class);
 
     }
