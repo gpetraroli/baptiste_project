@@ -4,7 +4,6 @@ namespace App\Controller\Admin\Customer;
 
 use App\Entity\Customer;
 use App\Entity\HeatActivity;
-use App\Form\Customer\FacilityType;
 use App\Form\Customer\HeatActivityType;
 use App\Repository\ActivityHeatRepository;
 use App\Service\CustomerManager;
@@ -13,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[Route('/admin/facility', name: 'app_admin_facility')]
 class HeatActivityController extends AbstractController
