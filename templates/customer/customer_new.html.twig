@@ -1,6 +1,12 @@
 {% extends 'layout-admin.html.twig' %}
 
-{% block page_title %}New customer{% endblock %}
+{% block page_title %}
+    <span class="d-flex gap-3 align-items-center">
+        <a class="fs-3 text-primary" href="{{ path('app_admin_customer_list') }}"><i
+                    class="bi bi-arrow-left-circle-fill"></i></a>
+        <span>New customer</span>
+    </span>
+{% endblock %}
 
 {% block content %}
     {% include 'components/_customer_form.html.twig' %}

@@ -1,7 +1,13 @@
 {% extends 'layout-admin.html.twig' %}
 {% import 'macros/_heat-activity-prototype.html.twig' as formHeatActivityMacro %}
 
-{% block page_title %}New activity for customer {{ facility.customer.companyName }}{% endblock %}
+{% block page_title %}
+    <span class="d-flex gap-3 align-items-center">
+        <a class="fs-3 text-primary" href="{{ path('app_admin_customer_list') }}"><i
+                    class="bi bi-arrow-left-circle-fill"></i></a>
+        <span>New activity for customer {{ customer.companyName }}</span>
+    </span>
+{% endblock %}
 
 {% block content %}
     {{ form_start(form) }}
@@ -9,8 +15,7 @@
 
         <div>
             <div class="border rounded bg-white p-3">
-                {{ form_row(form.name) }}
-                {{ form_row(form.type) }}
+                {{ form_row(form.label) }}
             </div>
         </div>
 

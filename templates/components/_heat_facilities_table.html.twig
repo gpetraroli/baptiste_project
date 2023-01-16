@@ -10,22 +10,27 @@
         </tr>
         </thead>
         <tbody>
-        {% for facility in heatFacilities %}
+        {% for activity in heatActivities %}
             <tr>
-                <td>{{ facility.name }}</td>
-                <td>{{ facility.address.number }} {{ facility.address.street }} {{ facility.address.postalCode }} {{ facility.address.city }}</td>
+                <td>{{ activity.label }}</td>
+                <td>{{ activity.address.number }} {{ activity.address.street }} {{ activity.address.postalCode }} {{ activity.address.city }}</td>
                 <td>
-                    <a href="{{ facility.consultLink ~ '/' ~ facility.id }}" class="copy-link text-decoration-none"
+                    <a href="{{ activity.entryLink ~ '/' ~ activity.id }}" class="copy-link text-decoration-none"
                        title="Link used to generate customer's QR-Code">
                         <span class="copy-icon"><i class="bi bi-clipboard"></i></span>
                         <span class="copy-icon--checked d-none"><i class="bi bi-clipboard-check-fill"></i></span>
                     </a>
+                    <span
+                            class="tooltip-toggle ms-2"
+                            data-tooltip-content="<img src='{{ asset('images/qr_codes/' ~ activity.qrCodeUrl) }}'>"
+                            data-tooltip-direction="top" data-tooltip-width="auto">
+                        <i class="bi bi-qr-code fs-4"></i>
+                    </span>
                 </td>
-                <td>{{ facility.id }}</td>
+                <td></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
 </div>
 

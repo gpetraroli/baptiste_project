@@ -18,12 +18,22 @@ class HeatActivity
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\ManyToOne(inversedBy: 'heatActivities')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Facility $facility = null;
-
     #[ORM\OneToMany(mappedBy: 'heatActivity', targetEntity: HeatActivityEntry::class)]
     private Collection $heatActivityEntries;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Address $address = null;
+
+    #[ORM\ManyToOne(inversedBy: 'heatActivities')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Customer $customer = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $qrCodeUrl = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $entryLink = null;
 
     public function __construct()
     {
@@ -43,18 +53,6 @@ class HeatActivity
     public function setLabel(string $label): self
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    public function getFacility(): ?Facility
-    {
-        return $this->facility;
-    }
-
-    public function setFacility(?Facility $facility): self
-    {
-        $this->facility = $facility;
 
         return $this;
     }
@@ -85,6 +83,54 @@ class HeatActivity
                 $heatActivityEntry->setHeatActivity(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): self
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function getQrCodeUrl(): ?string
+    {
+        return $this->qrCodeUrl;
+    }
+
+    public function setQrCodeUrl(?string $qrCodeUrl): self
+    {
+        $this->qrCodeUrl = $qrCodeUrl;
+
+        return $this;
+    }
+
+    public function getEntryLink(): ?string
+    {
+        return $this->entryLink;
+    }
+
+    public function setEntryLink(string $entryLink): self
+    {
+        $this->entryLink = $entryLink;
 
         return $this;
     }

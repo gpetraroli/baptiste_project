@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\HeatActivity;
 
-use App\Entity\Customer;
-use App\Entity\Facility;
 use App\Entity\HeatActivity;
 use App\Entity\HeatActivityEntry;
 use App\Form\ActivityEntry\HeatActivityEntryType;
@@ -17,12 +15,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class HeatActivityEntryController extends AbstractController
 {
     #[Route('/{id}', name: '_index', methods: ['GET'])]
-    public function index(Facility $facility): Response
+    public function index(HeatActivity $heatActivity): Response
     {
         $this->denyAccessUnlessGranted('ROLE_CUSTOMER');
 
         return $this->render('heat_activity_entry/index.html.twig', [
-            'facility' => $facility,
+            'heatActivity' => $heatActivity,
         ]);
     }
 
@@ -41,11 +39,14 @@ class HeatActivityEntryController extends AbstractController
 
             $activityEntryRepository->save($heatActivityEntry, true);
 
-            return $this->redirectToRoute('app_admin_customer_list');
+            // TODO: TMP, redirect to log
+            return $this->redirectToRoute('app_heat_activity_entry_index', ['id' => $heatActivity->getId()]);
         }
 
         return $this->render('heat_activity_entry/new.html.twig', [
             'form' => $form,
         ]);
     }
+
+
 }

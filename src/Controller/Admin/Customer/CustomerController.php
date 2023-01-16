@@ -4,6 +4,7 @@ namespace App\Controller\Admin\Customer;
 
 use App\Entity\Customer;
 use App\Form\Customer\CustomerType;
+use App\Repository\ActivityHeatRepository;
 use App\Repository\CustomerRepository;
 use App\Repository\FacilityRepository;
 use App\Service\UserManager;
@@ -45,7 +46,7 @@ class CustomerController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: '_edit')]
-    public function edit(Request $request, Customer $customer, CustomerRepository $customerRepository, UserManager $userManager, FacilityRepository $facilityRepository): Response
+    public function edit(Request $request, Customer $customer, CustomerRepository $customerRepository, ActivityHeatRepository $activityHeatRepository): Response
     {
         $form = $this->createForm(CustomerType::class, $customer);
         $form->handleRequest($request);
@@ -60,7 +61,7 @@ class CustomerController extends AbstractController
         return $this->render('customer/customer_edit.html.twig', [
             'form' => $form,
             'customer' => $customer,
-            'heatFacilities' => $facilityRepository->findBy(['type' => 'heat', 'customer' => $customer]),
+            'heatActivities' => $activityHeatRepository->findBy(['customer' => $customer]),
         ]);
     }
 }

@@ -27,17 +27,18 @@ class Customer
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Contact::class, cascade: ['all'], orphanRemoval: true)]
     private Collection $otherContacts;
 
-    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Facility::class, orphanRemoval: true)]
-    private Collection $facilities;
-
 
     #[ORM\OneToOne(mappedBy: 'customer', cascade: ['persist', 'remove'])]
     private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: HeatActivity::class, orphanRemoval: true)]
+    private Collection $heatActivities;
 
     public function __construct()
     {
         $this->facilities = new ArrayCollection();
         $this->otherContacts = new ArrayCollection();
+        $this->heatActivities = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,36 +78,6 @@ class Customer
     public function setReferenceContact(?Contact $referenceContact): self
     {
         $this->referenceContact = $referenceContact;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Facility>
-     */
-    public function getFacilities(): Collection
-    {
-        return $this->facilities;
-    }
-
-    public function addFacility(Facility $facility): self
-    {
-        if (!$this->facilities->contains($facility)) {
-            $this->facilities->add($facility);
-            $facility->setCustomer($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFacility(Facility $facility): self
-    {
-        if ($this->facilities->removeElement($facility)) {
-            // set the owning side to null (unless already changed)
-            if ($facility->getCustomer() === $this) {
-                $facility->setCustomer(null);
-            }
-        }
 
         return $this;
     }
@@ -159,6 +130,36 @@ class Customer
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, HeatActivity>
+     */
+    public function getHeatActivities(): Collection
+    {
+        return $this->heatActivities;
+    }
+
+    public function addHeatActivity(HeatActivity $heatActivity): self
+    {
+        if (!$this->heatActivities->contains($heatActivity)) {
+            $this->heatActivities->add($heatActivity);
+            $heatActivity->setCustomer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHeatActivity(HeatActivity $heatActivity): self
+    {
+        if ($this->heatActivities->removeElement($heatActivity)) {
+            // set the owning side to null (unless already changed)
+            if ($heatActivity->getCustomer() === $this) {
+                $heatActivity->setCustomer(null);
+            }
+        }
 
         return $this;
     }
