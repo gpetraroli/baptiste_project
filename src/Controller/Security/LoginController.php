@@ -33,7 +33,6 @@ class LoginController extends AbstractController
     #[Route('/login-link-check', name: 'app_login_link_check')]
     public function loginLinkCheck(Request $request)
     {
-        dd($request);
         throw new \LogicException('This code should never be reached');
     }
 }

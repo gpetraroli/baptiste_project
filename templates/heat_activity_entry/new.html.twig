@@ -2,39 +2,53 @@
 
 {% block content %}
 
-    <div class="d-flex flex-column gap-3 col col-md-8 col-xl-6 mx-auto mt-5 px-3" data-controller="heat-new-entry">
+    <div class="stepper d-flex flex-column gap-3 col col-md-8 col-xl-6 mx-auto mt-5 px-3"
+         data-controller="heat-new-entry">
         {{ form_start(form) }}
 
-        <h4>Sélectionnez votre opération</h4>
-        <div class="mb-3">
-            <div class="border rounded bg-white p-3">
-                {{ form_widget(form.type, {'attr': {'class': 'd-flex flex-column gap-3'}}) }}
-            </div>
-        </div>
-
-        <h4>Entrez les informations</h4>
-        <div class="mb-3">
-            <div class="border rounded bg-white p-3">
-                {{ form_row(form.comments) }}
-                {{ form_row(form.workIdentifier) }}
-                {{ form_row(form.nameOA) }}
-            </div>
-        </div>
-
-        <h4>Signature</h4>
-        <div class="mb-3">
-            <div class="border rounded bg-white p-3 d-flex flex-column flex-md-row gap-2">
-                <div class="col">
-                    {{ form_row(form.lastName) }}
-                </div>
-                <div class="col">
-                    {{ form_row(form.firstName) }}
+        <div class="step">
+            <h4>Sélectionnez votre opération</h4>
+            <div class="mb-3">
+                <div class="border rounded bg-white p-3">
+                    {{ form_widget(form.type, {'attr': {'class': 'd-flex flex-column gap-3'}}) }}
                 </div>
             </div>
         </div>
 
-        {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary text-white'}}) }}
+        <div class="step">
+            <h4>Entrez les informations</h4>
+            <div class="mb-3">
+                <div class="border rounded bg-white p-3">
+                    {{ form_row(form.comments) }}
+                    {{ form_row(form.workIdentifier) }}
+                    {{ form_row(form.nameOA) }}
+                </div>
+            </div>
+        </div>
 
+        <div class="step">
+            <h4>Signature</h4>
+            <div class="mb-3">
+                <div class="border rounded bg-white p-3 d-flex flex-column flex-md-row gap-2">
+                    <div class="col">
+                        {{ form_row(form.lastName) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(form.firstName) }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="d-flex gap-5 justify-content-between">
+            <div class="d-flex gap-5">
+                <button class="btn btn-outline-primary previous-btn mb-3" type="button">previous</button>
+                <button class="btn btn-primary text-white next-btn mb-3" type="button">next</button>
+            </div>
+            {{ form_row(form.submit, {'attr': {'class': 'btn btn-primary text-white'}}) }}
+        </div>
         {{ form_end(form) }}
     </div>
 

@@ -45,4 +45,20 @@ class HeatActivityController extends AbstractController
             'customer' => $customer,
         ]);
     }
+
+    #[Route('/reset-qr/{id}', name: '_reset_qr')]
+    public function resetQrCode(
+        HeatActivity           $heatActivity,
+        QrCodeManager          $qrCodeManager,
+        CustomerManager        $customerManager,
+        ActivityHeatRepository $activityHeatRepository,
+    ): Response
+    {
+        $heatActivity->setEntryLink($customerManager->generateHeatEntryLink($heatActivity->getCustomer()->getId(), $heatActivity->getCustomer()->getUser()));
+        $qrCodeUrl = $qrCodeManager->createQrCode($heatActivity);
+        $heatActivity->setQrCodeUrl($qrCodeUrl);
+        $activityHeatRepository->save($heatActivity, true);
+
+        return $this->redirectToRoute('app_admin_customer_list');
+    }
 }

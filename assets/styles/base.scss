@@ -22,4 +22,18 @@ body {
     &:hover {
         background-color: $light-gray;
     }
+
+}
+
+// forms
+
+label {
+    &.required:after {
+        content: " *";
+        color: $danger;
+    }
+}
+
+input.error, textarea.error {
+    border: 1px solid $red;
 }

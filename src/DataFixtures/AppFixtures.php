@@ -51,7 +51,6 @@ class AppFixtures extends Fixture
 
         $customer->setReferenceContact($contact);
 
-
         $this->userManager->createUser($customer);
 
         $manager->persist($customer);
